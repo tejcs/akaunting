@@ -4,7 +4,6 @@ namespace App\Utilities;
 
 use App\Models\Auth\User;
 use App\Models\Common\Company;
-use Composer\InstalledVersions;
 use DB;
 
 class Info
@@ -23,10 +22,8 @@ class Info
     {
         return [
             'akaunting' => version('short'),
-            'laravel' => app()->version(),
             'php' => static::phpVersion(),
             'mysql' => static::mysqlVersion(),
-            'livewire' => InstalledVersions::getPrettyVersion('livewire/livewire'),
         ];
     }
 

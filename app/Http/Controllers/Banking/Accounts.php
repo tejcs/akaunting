@@ -12,7 +12,6 @@ use App\Models\Banking\Transaction;
 use App\Models\Banking\Transfer;
 use App\Utilities\Reports as Utility;
 use App\Models\Setting\Currency;
-use Date;
 
 class Accounts extends Controller
 {
@@ -245,11 +244,7 @@ class Accounts extends Controller
 
     public function seePerformance(Account $account)
     {
-        $data = [
-            'year'          => Date::now()->year,
-            'basis'         => 'accrual',
-            'account_id'    => $account->id,
-        ];
+        $data['account_id'] = $account->id;
 
         $report = Utility::getClassInstance('App\Reports\IncomeExpenseSummary');
 

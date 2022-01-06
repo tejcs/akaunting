@@ -272,10 +272,8 @@ abstract class DocumentTemplate extends Base
             return $textDocumentTitle;
         }
 
-        $key = $this->getSettingKey($type, 'title');
-
-        if (!empty(setting($key))) {
-            return setting($key);
+        if (!empty(setting($type . '.title'))) {
+            return setting($type . '.title');
         }
 
         $translation = $this->getTextFromConfig($type, 'document_title', Str::plural($type));
@@ -293,10 +291,8 @@ abstract class DocumentTemplate extends Base
             return $textDocumentSubheading;
         }
 
-        $key = $this->getSettingKey($type, 'subheading');
-
-        if (!empty(setting($key))) {
-            return setting($key);
+        if (!empty(setting($type . '.subheading'))) {
+            return setting($type . '.subheading');
         }
 
         $translation = $this->getTextFromConfig($type, 'document_subheading', 'subheading');
@@ -431,7 +427,7 @@ abstract class DocumentTemplate extends Base
             return $textItems;
         }
 
-        if (setting($this->getSettingKey($type, 'item_name')) !== null &&
+        if (setting($this->getSettingKey($type, 'item_name')) !== null && 
             (trans(setting($this->getSettingKey($type, 'item_name'))) != setting($this->getSettingKey($type, 'item_name')))
         ) {
             return setting($this->getSettingKey($type, 'item_name'));
@@ -461,7 +457,7 @@ abstract class DocumentTemplate extends Base
             return $textQuantity;
         }
 
-        if (setting($this->getSettingKey($type, 'quantity_name')) !== null &&
+        if (setting($this->getSettingKey($type, 'quantity_name')) !== null && 
             (trans(setting($this->getSettingKey($type, 'quantity_name'))) != setting($this->getSettingKey($type, 'quantity_name')))
         ) {
             return setting($this->getSettingKey($type, 'quantity_name'));
@@ -491,7 +487,7 @@ abstract class DocumentTemplate extends Base
             return $textPrice;
         }
 
-        if (setting($this->getSettingKey($type, 'price_name')) !== null &&
+        if (setting($this->getSettingKey($type, 'price_name')) !== null && 
             (trans(setting($this->getSettingKey($type, 'price_name'))) != setting($this->getSettingKey($type, 'price_name')))
         ) {
             return setting($this->getSettingKey($type, 'price_name'));

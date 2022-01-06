@@ -14,7 +14,8 @@ use App\Models\Banking\Transaction;
 use App\Models\Common\Contact;
 use App\Models\Document\Document;
 use App\Models\Setting\Currency;
-use App\Utilities\Date;
+use Date;
+use Illuminate\Http\Request as BaseRequest;
 
 class Customers extends Controller
 {

@@ -75,7 +75,7 @@ class Document extends FormRequest
                     $size = 7;
                 }
 
-                $rules['items.' . $key . '.quantity'] = 'required|max:' . $size . '|numeric|gt:0';
+                $rules['items.' . $key . '.quantity'] = 'required|max:' . $size;
                 $this->items_quantity_size[$key] = $size;
             }
         }
@@ -108,7 +108,6 @@ class Document extends FormRequest
         if ($this->items_quantity_size) {
             foreach ($this->items_quantity_size as $key => $quantity_size) {
                 $messages['items.' . $key . '.quantity.max'] = trans('validation.size', ['attribute' => Str::lower(trans('invoices.quantity')), 'size' => $quantity_size]);
-                $messages['items.' . $key . '.quantity.gt'] = trans('validation.gt.numeric', ['attribute' => Str::lower(trans('invoices.quantity')), 'value' => 0]);
             }
         }
 

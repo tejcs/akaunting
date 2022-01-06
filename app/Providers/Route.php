@@ -116,8 +116,6 @@ class Route extends Provider
      */
     public function map()
     {
-        $this->configureRateLimiting();
-
         $this->mapInstallRoutes();
 
         $this->mapApiRoutes();
@@ -159,6 +157,8 @@ class Route extends Provider
      */
     protected function mapApiRoutes()
     {
+        $this->configureRateLimiting();
+
         Facade::prefix('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
@@ -261,11 +261,7 @@ class Route extends Provider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(config('app.throttles.api'));
-        });
-
-        RateLimiter::for('import', function (Request $request) {
-            return Limit::perMinute(config('app.throttles.import'));
+            return Limit::perMinute(60);
         });
     }
 }

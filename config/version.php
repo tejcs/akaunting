@@ -16,9 +16,9 @@ return [
 
     'status'    =>  'Stable',
 
-    'date'      =>  '24-November-2021',
+    'date'      =>  '22-November-2021',
 
-    'time'      =>  '12:00',
+    'time'      =>  '20:00',
 
     'zone'      =>  'GMT +3',
 

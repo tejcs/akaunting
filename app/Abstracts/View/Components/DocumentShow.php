@@ -42,9 +42,6 @@ abstract class DocumentShow extends Base
     public $date_format;
 
     /** @var string */
-    public $routePrefix;
-
-    /** @var string */
     public $textRecurringType;
 
     /** @var string */
@@ -407,7 +404,6 @@ abstract class DocumentShow extends Base
         $this->logo = $this->getLogo($logo);
         $this->backgroundColor = $backgroundColor;
         $this->signedUrl = $this->getSignedUrl($type, $signedUrl);
-        $this->routePrefix = $this->getRoutePrefix($type);
 
         $this->histories = ($histories) ? $histories : $document->histories;
         $this->transactions = ($transactions) ? $transactions : $document->transactions;
@@ -1187,10 +1183,8 @@ abstract class DocumentShow extends Base
             return $textDocumentTitle;
         }
 
-        $key = $this->getSettingKey($type, 'title');
-
-        if (!empty(setting($key))) {
-            return setting($key);
+        if (!empty(setting($type . '.title'))) {
+            return setting($type . '.title');
         }
 
         $translation = $this->getTextFromConfig($type, 'document_title', Str::plural($type), 'trans_choice');
@@ -1208,10 +1202,8 @@ abstract class DocumentShow extends Base
             return $textDocumentSubheading;
         }
 
-        $key = $this->getSettingKey($type, 'subheading');
-
-        if (!empty(setting($key))) {
-            return setting($key);
+        if (!empty(setting($type . '.subheading'))) {
+            return setting($type . '.subheading');
         }
 
         $translation = $this->getTextFromConfig($type, 'document_subheading', 'subheading');
@@ -1609,13 +1601,5 @@ abstract class DocumentShow extends Base
 
         // @todo what return value invoice or always false??
         return setting('invoice.hide_amount', $hideAmount);
-    }
-
-    protected function getRoutePrefix($type) {
-        if ($prefix = config('type.' . $type . '.route.prefix', false)){
-            return 'invoices';
-        }
-
-        return $prefix;
     }
 }

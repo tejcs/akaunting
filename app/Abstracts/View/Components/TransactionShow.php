@@ -34,9 +34,6 @@ abstract class TransactionShow extends Base
 
     public $date_format;
 
-    /** @var string */
-    public $routePrefix;
-
     /** @var bool */
     public $hideButtonAddNew;
 
@@ -365,7 +362,6 @@ abstract class TransactionShow extends Base
         $this->date_format = $this->getCompanyDateFormat();
         $this->textRecurringType = $this->getTextRecurringType($type, $textRecurringType);
         $this->hideRecurringMessage = $hideRecurringMessage;
-        $this->routePrefix = $this->getRoutePrefix($type);
 
         // Navbar Hide
         $this->hideButtonAddNew = $hideButtonAddNew;
@@ -1300,13 +1296,5 @@ abstract class TransactionShow extends Base
         }
 
         return 'general.revenues';
-    }
-
-    protected function getRoutePrefix($type) {
-        if ($prefix = config('type.' . $type . '.route.prefix', false)){
-            return 'revenues';
-        }
-
-        return $prefix;
     }
 }
